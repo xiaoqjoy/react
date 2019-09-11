@@ -103,7 +103,7 @@ class App extends Component {
         <Clock/>
         <HelloMessage name="Runoob"/>
 
-        <ShoppingList name="2222222222"/>
+        <ShoppingList name="22222ssssssssssssss22222"/>
         <Button type="primary">Primary</Button>
         <Button>Default</Button>
         <Button type="dashed">我是antd组件</Button>
