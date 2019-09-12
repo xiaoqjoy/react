@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button,Icon,Typography } from 'antd';
+
+import TodoList from './components/TodoList';
+
 import 'antd/dist/antd.css';
 
 const { Title } = Typography;
@@ -10,7 +13,7 @@ function atAlert(a){
   alert(a)
 }
 
-class List extends React.Component {    //组件
+class List extends Component {    //组件
   
   onAlert() {
     alert(555)
@@ -25,20 +28,34 @@ class List extends React.Component {    //组件
   }
 }
 
-class ShoppingList extends React.Component {
+class ShoppingList extends Component {
   constructor(){
     super();
     this.state = {
-      name: '444444444444444'
+      data: ['aaa','bbb','ccc','ddd']
     }
   }
+
+  addArray = () => {
+    console.log(1111)
+    this.setState({
+      list: [...this.state.data, 'eeee']
+    })
+  }
+  
   render() {
     return (
       <div className="shopping-list">
         <List/>
         <h1>Shopping List for {this.props.name}</h1>
-        <h1>{this.state.name}</h1>
-        <h1 className="App-color" onClick={() => this.setState({name: '666666666666'})}>{this.state.name}</h1>
+        <h1>
+          {
+            this.state.data.map((item,index) => {
+              return <li key={index}>{ item }</li>
+            })
+          }
+        </h1>
+        <h1 className="App-color" onClick={this.addArray}>点击我增加数组</h1>
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -49,7 +66,7 @@ class ShoppingList extends React.Component {
   }
 }
 
-class Clock extends React.Component{
+class Clock extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -88,7 +105,13 @@ function HelloMessage(props) {
   return <h1>66666666666666666 Hello {props.name}!</h1>;
 }
 
+
+
 class App extends Component {
+  getChildData(e,num){
+    console.log(e,num)
+  }
+  
   render() {
     return (
       <div className="App">
@@ -116,6 +139,7 @@ class App extends Component {
         <Title level={2}>h2. Ant Design</Title>
         <Title level={3}>h3. Ant Design</Title>
         <Title level={4}>h4. Ant Design</Title>
+        <TodoList age={23} news={this} getData={this.getChildData.bind(this)}/>
       </div>
     );
   }
