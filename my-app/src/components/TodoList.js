@@ -6,13 +6,18 @@ class TodoList extends Component {
         this.state = {
             name: 'leo'
         }
+
+        this.getChildData = this.getChildData.bind(this)
     }
     getChildData(){
-        this.props.getData(this.state.name,123)
+        const { getData } = this.props;        //es6的解构赋值
+        const { name } = this.state;
+        getData(name,123)
     }
     render(){
+        const { age } = this.props;
         return(
-            <div onClick={this.getChildData.bind(this)}>我是TodoList组件{this.props.age}</div>
+            <div style={{ color: 'red', fontSize: '20px', marginBottom: '50px' }} onClick={ this.getChildData }>我是TodoList组件{age}</div>
         )
     }
 }

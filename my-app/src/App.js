@@ -34,13 +34,23 @@ class ShoppingList extends Component {
     this.state = {
       data: ['aaa','bbb','ccc','ddd']
     }
+
+    //this.addArray = this.addArray.bind(this)     //在constructor里绑定this指向
   }
 
-  addArray = () => {
+  addArray(){
     console.log(1111)
     this.setState({
-      list: [...this.state.data, 'eeee']
+      data: [...this.state.data, 'eeee']
     })
+  }
+
+  getData(){     //把组件提取出来
+    return (
+      this.state.data.map((item,index) => {
+        return <li key={index}>{ item }</li>
+      })
+    )
   }
   
   render() {
@@ -48,14 +58,8 @@ class ShoppingList extends Component {
       <div className="shopping-list">
         <List/>
         <h1>Shopping List for {this.props.name}</h1>
-        <h1>
-          {
-            this.state.data.map((item,index) => {
-              return <li key={index}>{ item }</li>
-            })
-          }
-        </h1>
-        <h1 className="App-color" onClick={this.addArray}>点击我增加数组</h1>
+        <h1>{ this.getData() }</h1>
+        <h1 className="App-color" onClick={ () => {this.addArray() }}>点击我增加数组</h1>     {/* es6的箭头函数写法，改变this的指向 */}
         <ul>
           <li>Instagram</li>
           <li>WhatsApp</li>
@@ -139,7 +143,7 @@ class App extends Component {
         <Title level={2}>h2. Ant Design</Title>
         <Title level={3}>h3. Ant Design</Title>
         <Title level={4}>h4. Ant Design</Title>
-        <TodoList age={23} news={this} getData={this.getChildData.bind(this)}/>
+        <TodoList age={23} getData={this.getChildData.bind(this)}/>
       </div>
     );
   }

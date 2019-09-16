@@ -26,3 +26,26 @@ arr.map((item,index) => {    //箭头函数的写法，把回调函数去掉了
 arr.map(function(item,index){
 
 })
+
+react父组件向子组件传值通过props
+子组件向父组件传值通过事件绑定
+
+var obj = {name: 'neo'}
+const { name } = obj           //es6的解构赋值
+name   // 'neo'
+
+const { age } = this.props;    //es6的解构赋值
+
+{this.props.age}   
+
+
+
+
+
+
+
+
+
+
+
+
