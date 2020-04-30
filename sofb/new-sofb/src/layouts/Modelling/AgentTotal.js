@@ -43,7 +43,7 @@ const BigTxt = styled.strong`
 `;
 
 const styleCol = style(Col)`
-
+width: auto;
 `;
 
 

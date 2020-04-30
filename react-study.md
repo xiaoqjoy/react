@@ -22,6 +22,19 @@ var obj = {arr}      //上下两者的区别是上面的打印obj是数组，下
 
 ----------------------------------
 
+对象的解构赋值
+
+let node = {
+	type: 'id',
+	name: 'foo'
+}
+
+let { type, name } = node;
+
+type    //id
+name	//foo
+
+----------------------------------
 
 
 
@@ -50,6 +63,76 @@ name   // 'neo'
 const { age } = this.props;    //es6的解构赋值
 
 {this.props.age}   
+
+
+------------------------------
+
+
+react native	
+
+用于开发Android和iOS App的一个框架			JSX语法
+
+虚拟DOM技术
+
+大写字母开头都是组件
+
+index.js  入口文件  引入第一个dom文件App
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+---------
+
+import React, { Component } from 'react';
+
+constructor(props){
+	super(props);
+	this.state = {
+	
+	}
+}
+
+定义了一个React组件
+class App extend Component {
+	render(){
+		return (
+			<div class='className'></div>
+		);
+	}
+}
+
+export default App;
+
+-------
+
+JSX语法   js表达式
+
+面向数据编程   
+
+
+...array      //展开运算符    复制数据
+
+操作数据即可，不需要操作dom
+
+父组件 向  子组件 传递参数用 props
+
+
+
+--------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
