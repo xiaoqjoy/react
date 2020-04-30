@@ -119,6 +119,13 @@ JSX语法   js表达式
 
 父组件 向  子组件 传递参数用 props
 
+className定义样式
+
+最外层要包裹一层div  和 vue 一样     React.Fragment可以替代最外层的div
+
+
+
+
 
 
 --------
