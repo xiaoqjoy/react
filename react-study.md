@@ -130,18 +130,70 @@ className定义样式
 
 --------
 
+设置订阅以及手动更改 React 组件中的 DOM 都属于副作用
+
+componentDidMount() {	
+	this.id = setInterval(() =&gt; {	
+	  this.setState({count: this.state.count + 1})	
+	}, 1000);	
+}	
+componentWillUnmount() {	//清除
+	clearInterval(this.id)	
+}
+
+
+react hooks   useEffect
+
+useEffect  使用效果
+
+Effect		影响
+
+
+React 保证了每次运行 effect 的同时，DOM 都已经更新完毕   同步的作用
+
+每次render之后执行useEffect里面的函数
 
 
 
+const [count, setCount] = useState(0);   定义并且设置了count的值
+
+onClick={() => setCount(count + 1)}
+
+
+//我这个effect的依赖项是name这个变量，只有当name发生变化的时候才去执行里面的函数
+
+
+useEffect(() => {
+	document.title = 'Hello, ' + count;
+	
+	
+	return () => {     //组件卸载时执行
+		setCount(0)    //让	count=0
+	}
+}, [count]); 
+	
+	
+	
 
 
 
+constructor (props){	
+	super(props);	
+	this.state = {	
+	  count: 0	
+	}	
+}
 
 
+jsx  模板文件   js 逻辑js文件
 
 
+高阶组件   withRouter    react-router-demo
 
+获取到history对象，withRouter会在render时把更新
+后的match, location和history传递给被包裹组件
 
+import React, { useRef, useEffect, useState, useReducer } from "react"
 
 
 
