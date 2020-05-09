@@ -132,6 +132,7 @@ className定义样式
 
 设置订阅以及手动更改 React 组件中的 DOM 都属于副作用
 
+
 componentDidMount() {	
 	this.id = setInterval(() =&gt; {	
 	  this.setState({count: this.state.count + 1})	
@@ -194,6 +195,79 @@ jsx  模板文件   js 逻辑js文件
 后的match, location和history传递给被包裹组件
 
 import React, { useRef, useEffect, useState, useReducer } from "react"
+
+
+
+《useEffect 完整指南》
+
+
+----------------------------------------------------------
+
+react render 数组渲染用法
+
+var arr = [
+	{
+		id: 1,
+		name: 'leo'
+	},
+	{
+		id: 2,
+		name: 'kkk'
+	}
+];
+
+
+{arr.map((item, index) => (
+	<Option key={index} value={item.id}>
+		{item.name}
+	</Option>
+))}
+
+
+
+---------------------------------------
+
+优化 useState  的 实际应用
+
+
+安装
+
+npm install immer use-immer
+引用
+
+import { useImmer } from 'use-immer'
+重新声明上面用到的 subjectList
+
+const [subjectList, setSubjectList] = useImmer([
+  { id: 0, project_name: '语文' },
+  { id: 1, project_name: '数学' }
+])
+
+修改 subjectList 数组的第二项的 project_name 属性，值为体育；并添加第三项 { id: 2, project_name: '音乐' }
+
+setSubjectList(draft => {
+  draft[1].project_name = '体育'
+  draft[2] = { id: 2, project_name: '音乐' }
+}) 
+
+需要注意的是，这里的 setSubjectList 方法接收的是一个函数，该函数接收一个参数 draft，可以理解为是变量 subjectList 的副本
+
+----------------------------------------
+
+
+react生命周期
+
+componentWillMount(){}
+componentDidUpdate(){}
+componentDidMount(){}	
+componentWillUnmount(){}
+
+---------------------------------------
+
+
+
+
+
 
 
 
