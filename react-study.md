@@ -329,9 +329,6 @@ componentDidMount()				//组件第一次渲染完成，此时dom节点已经生�
 componentWillUnmount (){
 	this.setState = (state, callback) => {		//在此处完成组件的卸载和数据的销毁
 		return;
-		
-		
-		
 	}
 }								
 2. 更新过程
