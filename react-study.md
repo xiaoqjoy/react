@@ -330,6 +330,8 @@ componentWillUnmount (){
 	this.setState = (state, callback) => {		//在此处完成组件的卸载和数据的销毁
 		return;
 		
+		
+		
 	}
 }								
 2. 更新过程
