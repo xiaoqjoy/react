@@ -174,8 +174,47 @@ useEffect(() => {
 }, [count]); 
 	
 	
-	
+const [state, dispatch] = useReducer(reducer, initialState);
+const { count, step } = state;
 
+useEffect(() => {
+  const id = setInterval(() => {
+    dispatch({ type: "tick" }); // Instead of setCount(c => c + step);
+  }, 1000);
+  return () => clearInterval(id);
+}, [dispatch]);
+
+-------------------------------------------------------------------
+
+完整的react hook组件结构
+
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
+
+const testComponent = (props) => {
+	
+	const [data, setData] = useState([]);
+	
+	useEffect(() => {
+		setData([1,2,3])
+	},[])     //设置依赖
+	
+	return (
+		<div></div>
+	)
+	
+	export default withRouter(testComponent)
+
+}
+
+-------------------------------------------------------------------
+	
+	
+useEffect 的兄弟 useReducer 函数，将更新与动作解耦
+
+
+
+useReducer 比作 Hooks 的的金手指模式，因为这充分绕过了 Diff 机制
 
 
 constructor (props){	
@@ -184,6 +223,20 @@ constructor (props){
 	  count: 0	
 	}	
 }
+
+
+
+
+useEffect(() => {
+  document.title = "Hello, " + name;
+}, [name]); // Our deps
+
+
+
+直到 name 改变时的 Rerender，useEffect 才会再次执行
+
+
+Scope   范围 环境中
 
 
 jsx  模板文件   js 逻辑js文件
@@ -257,12 +310,100 @@ setSubjectList(draft => {
 
 react生命周期
 
-componentWillMount(){}
-componentDidUpdate(){}
-componentDidMount(){}	
-componentWillUnmount(){}
+组件将要挂载时触发的函数：componentWillMount
+组件挂载完成时触发的函数：componentDidMount
+是否要更新数据时触发的函数：shouldComponentUpdate(nextProps,nextState){}                 //nextProps是父组件传给子组件的值，nextState是数据更新之后值
+将要更新数据时触发的函数：componentWillUpdate
+数据更新完成时触发的函数：componentDidUpdate
+组件将要销毁时触发的函数：componentWillUnmount
+父组件中改变了props传值时触发的函数：componentWillReceiveProps
+
+
+
+
+
+1. 挂载卸载过程
+constructor()					//它接受两个参数：props和context
+componentWillMount()			//组件已经经历了constructor()初始化数据后，但是还未渲染DOM时
+componentDidMount()				//组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染
+componentWillUnmount (){
+	this.setState = (state, callback) => {		//在此处完成组件的卸载和数据的销毁
+		return;
+		
+	}
+}								
+2. 更新过程
+componentWillReceiveProps (nextProps)				//在接受父组件改变后的props需要重新渲染组件时用到的比较多
+shouldComponentUpdate(nextProps,nextState)
+componentWillUpdate (nextProps,nextState)
+componentDidUpdate(prevProps,prevState)				//组件更新完毕后，react只会在第一次初始化成功会进入componentDidmount,之后每次重新渲染后都会进入这个生命周期，
+														这里可以拿到prevProps和prevState，即更新前的props和state
+
+
+render()
+
+render函数会插入jsx生成的dom结构，react会生成一份虚拟dom树，在每一次组件更新时，
+在此react会通过其diff算法比较更新前后的新旧DOM树，比较以后，找到最小的有差异的DOM节点，并重新渲染
+
+
+组件至少会渲染2次，一次是加载render里面的dom并且挂载到组件上，然后就是setState后再次重新渲染
+
+
 
 ---------------------------------------
+
+如何用 useEffect 代替 componentDidMount?
+如何用 useEffect 取数？参数 [] 代表什么？
+useEffect 的依赖可以是函数吗？是哪些函数？
+为何有时候取数会触发死循环？
+为什么有时候在 useEffect 中拿到的 state 或 props 是旧的？
+
+
+-------------------------------------
+
+
+Fiddler  接口本地化工具
+
+---------------------------
+
+
+Function Component 和  Class Component
+
+
+Mutable   可变的 		Immutable   不可变的 
+
+Capture Value  捕获值
+
+
+-------------------------------
+
+
+componentDidMount() {
+	this.drawChart();
+}
+
+确保只在组件被挂载到DOM上时才显示图表
+
+--------------------------------
+
+<button onClick={()=>this.setMsg()}></button>
+
+==           { return function(){ this.setMsg() } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
