@@ -3,6 +3,8 @@ const b = {name : 'fang', sex : 'men'}
 Object.assign({}, a, b);
 //{name : 'fang', age : '17', sex : 'men'}
 
+const { name, age } = a
+
 Object.assign的对象合并，后一个
 key值会覆盖前面的key值
 
@@ -239,7 +241,7 @@ useEffect(() => {
 Scope   范围 环境中
 
 
-jsx  模板文件   js 逻辑js文件
+xx.jsx  模板文件   xx.js 逻辑js文件
 
 
 高阶组件   withRouter    react-router-demo
@@ -257,7 +259,7 @@ import React, { useRef, useEffect, useState, useReducer } from "react"
 ----------------------------------------------------------
 
 react render 数组渲染用法
-
+ 
 var arr = [
 	{
 		id: 1,
@@ -391,14 +393,70 @@ componentDidMount() {
 
 
 
+------------------------------------
+
+
+react-redux
+
+
+React-Redux 提供<Provider/>组件，能够使你的整个app访问到Redux store中的数据
+
+import { Provider } from "react-redux";
+import store from "./store";
+
+
+<Provider store={store}>
+	<App />
+</Provider>
+
+
+React-Redux提供一个connect方法能够让你把组件和store连接起来
+
+
+import { connect } from "react-redux";
+import { increment, decrement, reset } from "./actionCreators";
+
+// const Counter = ...
+
+const mapStateToProps = (state, ownProps) => {         		//connect的可选参数
+  return {
+    counter: state.counter				 // ... 从state中处理的一些数据，以及可选的ownProps
+  };
+};
+
+const mapDispatchToProps = { increment, decrement, reset };			//connect的可选参数
+								// ... 通常是action creators构成的对象
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);
+
+export default withRouter(
+	connect(
+		mapStateToProps, 				//输入逻辑：外部的数据（即state对象）如何转换为 UI 组件的参数
+		mapDispatchToProps				//输出逻辑：用户发出的动作如何变为 Action 对象，从 UI 组件传出去
+	)(App)
+)
 
 
 
 
 
 
+dispatch：  派发
 
 
+---------------------------------
+
+										//高阶函数
+React.memo()                         //将函数执行结果用变量缓存起来的方法,当函数进行计算之前，先看缓存对象中是否有次计算结果，
+										如果有，就直接从缓存对象中获取结果；如果没有，就进行计算，并将结果保存到缓存对象中
+
+
+# 可以解决多次重复渲染问题
+
+------------------------------
 
 
 
