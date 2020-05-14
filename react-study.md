@@ -448,13 +448,24 @@ dispatch：  派发
 
 
 ---------------------------------
-
-										//高阶函数
+### 高阶函数
+										
 React.memo()                         //将函数执行结果用变量缓存起来的方法,当函数进行计算之前，先看缓存对象中是否有次计算结果，
 										如果有，就直接从缓存对象中获取结果；如果没有，就进行计算，并将结果保存到缓存对象中
 
 
 # 可以解决多次重复渲染问题
+
+
+	class Child extends React.PureComponent {
+		render(){
+			console.log('I am rendering');
+			return (
+				<div>I am update every {this.props.seconds} seconds</div>
+			)
+		}
+	}
+
 
 ------------------------------
 
