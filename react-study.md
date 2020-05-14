@@ -457,6 +457,8 @@ React.memo()                         //将函数执行结果用变量缓存起�
 # 可以解决多次重复渲染问题
 
 
+React.PureComponent 高阶组件
+
 	class Child extends React.PureComponent {
 		render(){
 			console.log('I am rendering');
@@ -466,7 +468,7 @@ React.memo()                         //将函数执行结果用变量缓存起�
 		}
 	}
 
-	
+Child组件不会跟着其他组件一起渲染	
 	
 	
 	
