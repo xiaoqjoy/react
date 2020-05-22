@@ -472,16 +472,56 @@ Child组件不会跟着其他组件一起渲染
 ------------------------------
 
 
+Object.assign      //对象的浅拷贝
+--------------------
 
 
+<div ref={e => (this.scroll = e)}></div>
 
 
+componentDidMount() {
+     if (this.scroll) {
+      this.scroll.addEventListener("scroll", e => {
+        const { clientHeight, scrollHeight, scrollTop } = e.target;
+        // const { clientHeight, scrollHeight, scrollTop } = this.scroll;
+ 
+        const isBottom = scrollTop + clientHeight + 20 > scrollHeight;
+        console.log(scrollTop, clientHeight, scrollHeight, isBottom);
+      });
+    }
+  }
+
+  
+  isBottom为true时滚动到底部，此时+20代表离底部20像素之内就判断为滚动到底部，继续加载数据
+
+其他获取方式
+
+clientHeight 可视区域高度 (固定的)
+
+scrollHeight 内容总高度 (固定的)
+
+scrollTop 滚动条滚动的高度 (变化的)
+
+--------------------------------------------
 
 
+this.state = {
+	data: []
+}
+
+const { data } = this.state;
 
 
+//拿到旧的state 和  新的数据进行拼接
+const newData = [...data,...data.obj]
 
+this.setState({
+	data: newData			//赋值给组件的state
+})
 
+理解：   在state里面的数据一直都是保存着的，所以可以不断的push数据进去，在全局声明空的数组在click时会再次被清空，所以只能在保存在state里面
+
+------------------------------------
 
 
 
