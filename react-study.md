@@ -327,6 +327,8 @@ react生命周期
 1. 挂载卸载过程
 constructor()					//它接受两个参数：props和context
 componentWillMount()			//组件已经经历了constructor()初始化数据后，但是还未渲染DOM时
+								//组件加载时只调用，以后组件更新不调用，整个生命周期只调用一次，此时可以修改state
+
 componentDidMount()				//组件第一次渲染完成，此时dom节点已经生成，可以在这里调用ajax请求，返回数据setState后组件会重新渲染
 componentWillUnmount (){
 	this.setState = (state, callback) => {		//在此处完成组件的卸载和数据的销毁
@@ -523,9 +525,71 @@ this.setState({
 
 ------------------------------------
 
+react vscode 开发必备插件       Chinese language(汉化包)		ESLint(js代码检测错误工具)	Prettier - Code formatter(代码格式化工具)
+
+-----------------------------------
+
+React 设计思想
+
+https://github.com/react-guide/react-basic
+
+设计 React 的核心前提是认为 UI 只是把数据通过映射关系变换成另一种形式的数据。
+同样的输入必会有同样的输出。这恰好就是纯函数。
 
 
+state   状态
+
+1、通过event对象信息的方式获取input输入框内容
+
+<input type="text" onChange={ (e) => this.inputChange(e) } />
+
+inputChange(e){
+	console.log(e.target.value)     //获取input里面的值
+}
+
+() => this.event()      //react写法
 
 
+2、使用ref的方式获取input输入框内容
+
+<input ref="username" onChange={ () => this.getValue() } />
+
+getValue(){
+	console.log(this.refs.username.value)
+}
+
+
+---------------------------------------------------
+
+react 路由设置
+
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+<Router>
+    <div>
+	  <Link to='/'>首页</Link>
+	  <Link to='/news'>新闻页</Link>
+	  <Link to='/AboutUs'>关于我</Link>
+
+	  <Route path='/' />
+	  <Route path='/news' component={news} />
+	  <Route path='/AboutUs' conponent={AboutUs} />
+    </div>
+</Router>
+
+----------------------------------------------------------
+
+
+es6  模板字符串   用法
+
+let time = new Date().getTime();
+let a = `$(time):111111111111`;         //23544657657:11111111111
+
+
+-----------------------------------------------------------
+
+background: #5f80b6;   // 先把颜色值转成rgb值，再把透明值加在后面    https://www.sioe.cn/yingyong/yanse-rgb-16/
+background-color: rgba(95,128,182,0.4)
 
 
