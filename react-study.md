@@ -52,11 +52,13 @@ arr.map(function(item,index){
 
 })
 
-
+----------------------------------------
 
 
 react父组件向子组件传值通过props
 子组件向父组件传值通过事件绑定
+
+-------------------------------------
 
 var obj = {name: 'neo'}
 const { name } = obj           //es6的解构赋值
@@ -86,7 +88,7 @@ import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
----------
+--------------------------------------------------------
 
 import React, { Component } from 'react';
 
@@ -108,7 +110,7 @@ class App extend Component {
 
 export default App;
 
--------
+-------------------------------------------------
 
 JSX语法   js表达式
 
@@ -126,11 +128,8 @@ className定义样式
 最外层要包裹一层div  和 vue 一样     React.Fragment可以替代最外层的div
 
 
+------------------------------------------------------------
 
-
-
-
---------
 
 设置订阅以及手动更改 React 组件中的 DOM 都属于副作用
 
@@ -144,6 +143,7 @@ componentWillUnmount() {	//清除
 	clearInterval(this.id)	
 }
 
+-----------------------------------------------------------
 
 react hooks   useEffect
 
@@ -154,9 +154,9 @@ Effect		影响
 
 React 保证了每次运行 effect 的同时，DOM 都已经更新完毕   同步的作用
 
-每次render之后执行useEffect里面的函数
+每次render之后执行useEffect里面的函数 
 
-
+ 
 
 const [count, setCount] = useState(0);   定义并且设置了count的值
 
@@ -169,7 +169,6 @@ onClick={() => setCount(count + 1)}
 useEffect(() => {
 	document.title = 'Hello, ' + count;
 	
-	
 	return () => {     //组件卸载时执行
 		setCount(0)    //让	count=0
 	}
@@ -177,8 +176,9 @@ useEffect(() => {
 	
 	
 const [state, dispatch] = useReducer(reducer, initialState);
-const { count, step } = state;
 
+const { count, step } = state;
+ 
 useEffect(() => {
   const id = setInterval(() => {
     dispatch({ type: "tick" }); // Instead of setCount(c => c + step);
@@ -253,7 +253,7 @@ import React, { useRef, useEffect, useState, useReducer } from "react"
 
 
 
-《useEffect 完整指南》
+《useEffect 完整指南》 
 
 
 ----------------------------------------------------------
@@ -439,7 +439,7 @@ export default withRouter(
 		mapStateToProps, 				//输入逻辑：外部的数据（即state对象）如何转换为 UI 组件的参数
 		mapDispatchToProps				//输出逻辑：用户发出的动作如何变为 Action 对象，从 UI 组件传出去
 	)(App)
-)
+)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               6
 
 
 
@@ -587,9 +587,27 @@ let time = new Date().getTime();
 let a = `$(time):111111111111`;         //23544657657:11111111111
 
 
+
 -----------------------------------------------------------
+
+
 
 background: #5f80b6;   // 先把颜色值转成rgb值，再把透明值加在后面    https://www.sioe.cn/yingyong/yanse-rgb-16/
 background-color: rgba(95,128,182,0.4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
