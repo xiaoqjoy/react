@@ -525,7 +525,11 @@ this.setState({
 
 ------------------------------------
 
-react vscode 开发必备插件       Chinese language(汉化包)		ESLint(js代码检测错误工具)	Prettier - Code formatter(代码格式化工具)
+react vscode 开发必备插件       Chinese language(汉化包)		ESLint(js代码检测错误工具)	Prettier - Code formatter(代码格式化工具)  		GitLens — Git supercharged(查看代码git提交人和时间)
+
+
+vue vscode 开发必备插件 		Vetur	vue
+
 
 -----------------------------------
 
