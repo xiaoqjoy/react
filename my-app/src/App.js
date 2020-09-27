@@ -5,10 +5,8 @@ import { Button,Icon,Typography } from 'antd';
 
 import TodoList from './components/TodoList';
 
-
-import AddCount from './components/AddCount';
-
 import 'antd/dist/antd.css';
+
 
 const { Title } = Typography;
 
@@ -112,46 +110,62 @@ function HelloMessage(props) {
   return <h1>66666666666666666 Hello {props.name}!</h1>;
 }
 
-
+export const {Provider, Consumer} = React.createContext();
 
 class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      age: 45
+    }
+  }
+
+  componentDidMount(){
+    console.log(this.refs.todoList)
+    console.log(this.refs.todoList.state.name)
+  }
+
   getChildData(e,num){
     console.log(e,num)
   }
   
   render() {
-    return (
-      <div className="App">
-        
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Clock/>
-        <HelloMessage name="Runoob"/>
 
-        <ShoppingList name="22222ssssssssssssss22222"/>
-        <Button type="primary">Primary</Button>
-        <Button>Default</Button>
-        <Button type="dashed">我是antd组件</Button>
-        <Button type="danger">Danger</Button>
-        <Button type="link">Link</Button>
-        <Icon type="wifi" />
-        <Icon type="loading" />
+    let name ="小人头";
 
-        <Title>h1. Ant Design</Title>
-        <Title level={2}>h2. Ant Design</Title>
-        <Title level={3}>h3. Ant Design</Title>
-        <Title level={4}>h4. Ant Design</Title>
-        <TodoList age={23} getData={this.getChildData.bind(this)}/>
+    return (  
+      <Provider value={name}>
+        <div className="App">
+          
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome to React</h1>
+          </header>
+          <p className="App-intro">
+            To get started, edit <code>src/App.js</code> and save to reload.
+          </p>
+          <Clock/>
+          <HelloMessage name="Runoob"/>
 
-        <AddCount />
+          <ShoppingList name="22222ssssssssssssss22222"/>
+          <Button type="primary">Primary</Button>
+          <Button>Default</Button>
+          <Button type="dashed">我是antd组件</Button>
+          <Button type="danger">Danger</Button>
+          <Button type="link">Link</Button>
+          <Icon type="wifi" />
+          <Icon type="loading" />
 
-        <h1>ooooooooooooooooooooooooooooo5555555555555o</h1>
-      </div>
+          <Title>h1. Ant Design</Title>
+          <Title level={2}>h2. Ant Design</Title>
+          <Title level={3}>h3. Ant Design</Title>
+          <Title level={4}>h4. Ant Design</Title>
+          <TodoList age={this.state.age} ref="todoList" getData={this.getChildData.bind(this)}/>
+
+          <h1>ooooooooooooooooooooooooooooo5555555555555o</h1>
+        </div>
+      </Provider>
     );
   }
 }
