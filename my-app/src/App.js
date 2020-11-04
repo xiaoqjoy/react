@@ -7,6 +7,8 @@ import TodoList from './components/TodoList';
 
 import 'antd/dist/antd.css';
 
+import Store from './store/index';
+
 
 const { Title } = Typography;
 
@@ -116,6 +118,9 @@ class App extends Component {
 
   constructor(props){
     super(props)
+
+    console.log(Store.getState())
+
     this.state = {
       age: 45
     }
