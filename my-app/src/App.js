@@ -122,8 +122,13 @@ class App extends Component {
     console.log(Store.getState())
 
     this.state = {
-      age: 45
+      age: 45,
+      obj: Store.getState()
     }
+
+    this.handleChange = this.handleChange.bind(this)
+
+    Store.subscribe(this.handleChange)     //通过 subscribe(listener) 注册监听器 实时更新组件state
   }
 
   componentDidMount(){
@@ -133,6 +138,23 @@ class App extends Component {
 
   getChildData(e,num){
     console.log(e,num)
+  }
+
+  handleChange(){
+    console.log('我接收到了Store中状态变化的监听')
+    this.setState({
+      obj: Store.getState()
+    })
+  }
+
+  changeInput(e){
+    //action
+    const action = {
+      type: 'change_input',
+      value: e.target.value
+    }
+    console.log(e.target.value)
+    Store.dispatch(action)                    //由组件触发action动作
   }
   
   render() {
@@ -169,6 +191,9 @@ class App extends Component {
           <TodoList age={this.state.age} ref="todoList" getData={this.getChildData.bind(this)}/>
 
           <h1>ooooooooooooooooooooooooooooo5555555555555o</h1>
+
+          <input type="text" value={this.state.obj.inputValue} onChange={this.changeInput} />
+
         </div>
       </Provider>
     );
