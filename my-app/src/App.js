@@ -9,6 +9,11 @@ import 'antd/dist/antd.css';
 
 import Store from './store/index';
 
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+import Page from './components/Page';
+import Page1 from './components/Page1';
+import Page2 from './components/Page2';
 
 const { Title } = Typography;
 
@@ -164,6 +169,25 @@ class App extends Component {
     return (  
       <Provider value={name}>
         <div className="App">
+
+          <Router>
+            <ul>
+              <li>
+                <Link to="./">page</Link>
+              </li>
+              <li>
+                <Link to="./page1">page1</Link>
+              </li>
+              <li>
+                <Link to="./page2">page2</Link>
+              </li>
+            </ul>
+            <div>
+              <Route exact path="/" component={Page} />
+              <Route path="/page1" component={Page1} />
+              <Route path="/page2" component={Page2} />
+            </div>
+          </Router>
           
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
