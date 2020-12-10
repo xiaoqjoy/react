@@ -314,7 +314,7 @@ react生命周期
 
 组件将要挂载时触发的函数：componentWillMount
 组件挂载完成时触发的函数：componentDidMount
-是否要更新数据时触发的函数：shouldComponentUpdate(nextProps,nextState){}                 //nextProps是父组件传给子组件的值，nextState是数据更新之后值
+是否要更新数据时触发的函数：shouldComponentUpdate(nextProps,nextState){}    //nextProps是父组件传给子组件的值，nextState是数据更新之后值
 将要更新数据时触发的函数：componentWillUpdate
 数据更新完成时触发的函数：componentDidUpdate
 组件将要销毁时触发的函数：componentWillUnmount
@@ -365,7 +365,7 @@ useEffect 的依赖可以是函数吗？是哪些函数？
 -------------------------------------
 
 
-Fiddler  接口本地化工具
+Fiddler  接口本地化mock工具
 
 ---------------------------
 
